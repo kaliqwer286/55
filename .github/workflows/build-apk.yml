@@ -28,10 +28,9 @@ jobs:
           cmake libffi-dev libssl-dev \
           automake ant ccache
 
-    - name: Install specific buildozer and cython
+    - name: Install buildozer
       run: |
         python -m pip install --upgrade pip
-        # 安装特定版本的 cython (0.29.x 兼容旧代码)
         pip install cython==0.29.36
         pip install buildozer==1.5.0
 
