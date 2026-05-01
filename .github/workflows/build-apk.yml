@@ -3,11 +3,11 @@ name: Build APK
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # 使用 Ubuntu 22.04 而不是 24.04
     
     steps:
     - name: Checkout code
@@ -24,9 +24,11 @@ jobs:
         sudo apt-get install -y \
           git zip unzip openjdk-17-jdk \
           autoconf libtool pkg-config zlib1g-dev \
-          libncurses5-dev libncursesw5-dev libtinfo5 \
+          libncurses5-dev libncursesw5-dev \
           cmake libffi-dev libssl-dev \
-          automake ant ccache
+          automake ant ccache \
+          libltdl-dev libffi-dev \
+          libz-dev libssl-dev
 
     - name: Install buildozer and dependencies
       run: |
@@ -34,17 +36,8 @@ jobs:
         pip install buildozer cython
         pip install -r requirements.txt
 
-    - name: Configure JDK
-      run: |
-        echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
-
     - name: Build APK with Buildozer
       run: |
-        # 初始化buildozer配置
-        buildozer init
-        # 复制配置文件（覆盖生成的默认配置）
-        cp buildozer.spec .buildozer/spec 2>/dev/null || true
-        # 构建APK
         buildozer -v android debug
 
     - name: Upload APK artifact
