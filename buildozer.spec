@@ -1,51 +1,26 @@
 [app]
 
-title = ATSC钱包
+title = ATSC Wallet
 package.name = atscwallet
-package.domain = org.atsc.client
+package.domain = org.atsc
 
 version = 10.12
 version.release = 10.12
 
-description = ATSC区块链客户端钱包
-author = ATSC Team
+description = ATSC Blockchain Wallet
+author = ATSC
 
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas,ttf,txt,json
-source.exclude_exts = spec
-source.exclude_dirs = tests, bin, .git, __pycache__, .buildozer
+source.include_exts = py
 
-# Android平台配置
 android.archs = arm64-v8a
 android.api = 30
 android.minapi = 21
-android.ndk = 25b
-android.sdk = 30
 
-# 应用权限
-android.permissions = INTERNET, ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE
+android.permissions = INTERNET
 
-# Python依赖库
-requirements = python3==3.9.7, kivy==2.1.0, requests==2.31.0, websocket-client==1.5.1, pillow==10.1.0, cython==0.29.36
+requirements = python3,kivy,requests,websocket-client
 
-# 日志级别
-log_level = 2
-
-# 屏幕方向
 orientation = portrait
 
-# 全屏模式
-fullscreen = 0
-
-# AndroidX支持
-android.enable_androidx = True
-
-# 自动接受SDK许可证
 android.accept_sdk_license = True
-
-# Gradle依赖
-android.gradle_dependencies = 'androidx.appcompat:appcompat:1.3.1'
-
-# 其他配置
-android.skip_update = False
-p4a.branch = develop
