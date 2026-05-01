@@ -1,26 +1,17 @@
 [app]
 
-title = ATSC Wallet
+title = ATSC钱包
 package.name = atscwallet
 package.domain = org.atsc
 
 version = 10.12
-version.release = 10.12
 
-description = ATSC Blockchain Wallet
-author = ATSC
+requirements = python3==3.9.7,kivy==2.1.0,requests==2.31.0,websocket-client==1.5.1
 
-source.dir = .
-source.include_exts = py
-
-android.archs = arm64-v8a
 android.api = 30
 android.minapi = 21
-
+android.ndk = 25b
 android.permissions = INTERNET
-
-requirements = python3,kivy,requests,websocket-client
-
 orientation = portrait
 
 android.accept_sdk_license = True
