@@ -10,7 +10,7 @@ version = 10.12
 version.release = 10.12
 
 # 应用描述
-description = ATSC区块链客户端钱包 - 支持转账、商城、聊天功能
+description = ATSC区块链客户端钱包
 author = ATSC Team
 
 # 源代码目录
@@ -19,22 +19,18 @@ source.include_exts = py,png,jpg,kv,atlas,ttf,txt,json
 source.exclude_exts = spec
 source.exclude_dirs = tests, bin, .git, __pycache__, .buildozer
 
-# 图标文件（可选，如果没有可以删除这行）
-# icon.filename = %(source.dir)s/icon.png
-# presplash.filename = %(source.dir)s/splash.png
-
-# Android平台配置
-android.archs = arm64-v8a, armeabi-v7a
+# Android平台配置 - 使用更稳定的版本
+android.archs = arm64-v8a
 android.api = 30
 android.minapi = 21
-android.ndk = 25b
+android.ndk = 23b
 android.sdk = 30
 
 # 应用权限
-android.permissions = INTERNET, ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
+android.permissions = INTERNET, ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE
 
-# Python依赖库
-requirements = python3,kivy==2.1.0,requests==2.31.0,websocket-client==1.5.1,pillow==10.1.0
+# Python依赖库 - 固定所有版本避免冲突
+requirements = python3==3.9.7,kivy==2.1.0,requests==2.31.0,websocket-client==1.5.1,pillow==10.1.0,cython==0.29.36
 
 # 日志级别
 log_level = 2
@@ -42,17 +38,19 @@ log_level = 2
 # 屏幕方向
 orientation = portrait
 
-# 全屏模式（0=不全屏，1=全屏）
+# 全屏模式
 fullscreen = 0
 
 # AndroidX支持
 android.enable_androidx = True
 
-# Gradle依赖
-android.gradle_dependencies = 'androidx.appcompat:appcompat:1.3.1'
-
 # 自动接受SDK许可证
 android.accept_sdk_license = True
 
-# 其他设置
+# P4A 配置 - 避免jnius编译错误
+p4a.branch = develop
+p4a.local_recipes = 
+p4a.allow_unknown_apis = True
+
+# 忽略某些警告
 android.skip_update = False
